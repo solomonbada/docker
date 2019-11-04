@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div style="background:transparent !important" class="jumbotron text-center">
+	<div class="container">
+	  <h2 class="text-primary" style="text-align: center; font-size:40px">{{ current_user.uni_name }} Societies</h2>
+	  <a style="text-align: center">Presented below are all societies at {{ current_user.uni_name }}.</a>
+	  <br>
+	  <a class="text-danger" style="font-size:11px">
+	  To join a society please head over to your "Account Overview" page and update your account with your preferred society.</a><br><br>
+
+	  <table class="table table-hover ">
+	    <thead>
+	      <tr>
+	        <th>Society Name</th>
+	        <th>About</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	      	{% for society in societies %}
+	        <td>{{ society.SocietyName }}</td>
+	        <td><form action="{{ url_for('more', society_id=society.id) }}" style="display: inline">
+			<input type="submit" value="More Info" button type="button" class="btn btn-primary btn-sm"></form></td>
+	      </tr>
+	    </tbody>
+	    {% endfor %}
+	  </table>
+	</div>
+</div>
+{% endblock body_content %}

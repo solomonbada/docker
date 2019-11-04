@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<style>
+			body {background-color: #e6e6e6; }
+		</style>
+
+		<div style="background-color: blue">
+			<nav class="navbar navbar-expand-sm bg-primary navbar-dark justify-content-center">
+			  <ul class="navbar-nav">
+			    {% if current_user.is_authenticated %}
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('mytimeline') }}">My Timeline</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('account') }}">Account Overview</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('viewsocieties') }}">View Societies</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('note') }}">Create Note</a>
+			    </li>
+			      </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+			    </li>
+			    {% else %}
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('about') }}">About</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+			    </li>
+			    {% endif %}
+			  </ul>
+			</nav>
+		</div>
+	</head>
+</html>
+{% block body_content %}{% endblock %}

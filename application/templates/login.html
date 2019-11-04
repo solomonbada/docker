@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div style="background:transparent !important" class="jumbotron text-center">
+	<h1 class="text-primary" style="font-size:40px">UCIETY Login</h1>
+	<p>Please Enter Your Login Details!</p>
+	<div class="form">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<div class="form-group">
+				{{ form.email.label }}
+				{% if form.email.errors %}
+					{{ form.email }}
+					<div class="error">
+						{% for error in form.email.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.email }}
+				{% endif %}
+			</div>
+			<div>			
+				{{ form.password.label }}
+				{% if form.password.errors %}
+					{{ form.password }}
+					<div class="error">
+						{% for error in form.password.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.password }}
+				{% endif %}
+			</div><br>
+			<div class="form-group">
+							<form action="{{ url_for('login') }}" method="POST">
+						<input type="submit" value="Login" button type="button"  class="btn btn-success"></form>
+			</div>
+		</form>
+		{{ form.remember.label }}
+		{{ form.remember }}
+	</div>
+</div>
+{% endblock body_content %}

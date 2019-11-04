@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div style="background:transparent !important" class="jumbotron text-center">
+	<h1 class="text-primary" style="font-size:40px">Create A New Note</h1>
+	<br>
+<div class="form">
+	<form method="POST" action="">
+		{{ form.hidden_tag() }}
+		<div style="font-size:30px"><b>{{ form.title.label }}</b></div>
+		{% if form.title.errors %}
+			{{ form.title }}
+			<div class="error">
+				{% for error in form.title.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% else %}
+				{{ form.title }}
+			{% endif %}
+		<br>
+		<div style="font-size:30px"><b>{{ form.content.label }}</b></div>
+		{% if form.content.errors %}
+			{{ form.content }}
+			<div class="error">
+				{% for error in form.content.errors %}
+					<span class="text-danger">{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% else %}
+				{{ form.content }}
+			{% endif %}
+		<br><br>
+		<form action="{{ url_for('note') }}" method="POST">
+						<input type="submit" value="Post Note" button type="button"  class="btn btn-primary btn-sm"></form>
+	</form>
+
+{% endblock body_content %}
+
+

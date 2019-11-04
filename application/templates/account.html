@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<div>
+	<div style="background:transparent !important" class="jumbotron text-center">
+		<div class="form">
+			<form method="POST" action="">
+				<h1>MY ACCOUNT DETAILS</h1>
+				<h3><b>Name:</b> {{ current_user.first_name }} {{ current_user.last_name }}</h3>
+				<h3><b>Email:</b> {{ current_user.email }}
+				<h3><b>University:</b> {{ current_user.uni_name }} </h3>
+				<h3><b>Joined Society:</b> {{ current_user.soc_name }} </h3>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="jumbotron text-center bg-primary text-white">
+	<h1>UPDATE ACCOUNT</h1>
+	<div class="form">
+			<form method="POST" action="">
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					{{ form.first_name.label }}
+					{% if form.first_name.errors %}
+						{{ form.first_name }}
+						<div class="error">
+							{% for error in form.first_name.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.first_name }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+				{{ form.last_name.label }}
+					{% if form.last_name.errors %}
+						{{ form.last_name }}
+						<div class="error">
+							{% for error in form.last_name.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.last_name }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+				{{ form.email.label }}
+					{% if form.email.errors %}
+						{{ form.email }}
+						<div class="error">
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.email }}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					<p>Please Select The Society You Wish To Join
+					{% if form.SocietyName.errors %}
+						{{ form.SocietyName }}
+						<div class="error">
+							{% for error in form.SocietyName.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.SocietyName }}
+					{% endif %}</p>
+				</div>
+				<div class="form-group">
+					<form action="{{ url_for('account') }}" method="POST">
+						<input type="submit" value="Update" button type="button"  class="btn btn-success"></form>
+				</div>
+			</form>
+		</div>
+</div>	
+{% endblock body_content %}
